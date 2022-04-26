@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ActuatorReportService {
 
-    List<ActuatorDto> process();
+    List<ActuatorDto> process(String service);
 
 }

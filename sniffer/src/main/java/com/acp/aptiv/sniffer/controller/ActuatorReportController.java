@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +22,8 @@ public class ActuatorReportController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ActuatorDto>> processActuatorReport() {
-        return ResponseEntity.ok(actuatorReportService.process());
+    public ResponseEntity<List<ActuatorDto>> processActuatorReport(
+            @RequestParam(value = "service", required = false) String service) {
+        return ResponseEntity.ok(actuatorReportService.process(service));
     }
 }
